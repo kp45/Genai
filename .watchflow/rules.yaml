@@ -1,0 +1,10 @@
+rules:
+  - id: pr-approval-required
+    name: PR Approval Required
+    description: All pull requests must have at least 1 approvals
+    enabled: true
+    severity: high
+    event_types: [pull_request]
+    parameters:
+      min_approvals: 1
+      
