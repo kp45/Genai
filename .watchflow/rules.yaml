@@ -1,58 +1,21 @@
 rules:
   - id: pr-approval-required
     name: PR Approval Required
-    description: All pull requests must have at least 1 approvals
+    description: All pull requests must have at least 2 approvals
     enabled: true
     severity: high
     event_types: [pull_request]
     parameters:
-      min_approvals: 1
+      min_approvals: 2
+      message: "Pull requests require at least 2 approvals"
       
-rules:
-  - id: pull-request-title-criteria
-    name: PR Title necessary
-    description: When a pull request is created, the title must include a date; if not, take action
+  # PR-specific rule
+  - id: pr-creation-title-rule
+    name: PR Title date Required
+    description: Selected PR Title must have date included in that
     enabled: true
-    severity: high
+    serverity: high
     event_types: [pull_request]
-    parameters:
-      title_pattern: anythings
-    feedback: "This rule requires PR titles to include a date when a pull request is created. Implementing this as a title_pattern rule is feasible by defining a regex that matches date formats (e.g., YYYY-MM-DD). Enforcement can be set to block merges or require corrections before approval. Consider specifying acceptable date formats clearly to avoid false negatives. Severity should be medium to high if the date is critical for tracking. Watchflow supports triggering actions on PR creation, making this practical.
-
-  # Pull Request rules
-  - description: "All PRs must have at least 1 approvals"
-    event_types: ["pull_request"]
-    condition: "min_approvals"
-    parameters:
-      min_approvals: 1
-      severity: high
-
-  - description: "PR title must follow Conventional Commits format"
-    event_types: ["pull_request"]
-    condition: "title_pattern"
-    parameters:
-      pattern: "^(feat|fix|docs|style|refactor|test|chore)(\\(.+\\))?: .+"
-      severity: medium
-
-  # Push (commit) rules
-  - description: "No direct pushes to protected branches"
-    event_types: ["push"]
-    condition: "protected_branches"
-    parameters:
-      protected_branches: ["main", "master"]
-      severity: high
-
-  - description: "Commit messages must follow Conventional Commits format"
-    event_types: ["push"]
-    condition: "pattern"
-    parameters:
-      pattern: "^(feat|fix|docs|style|refactor|test|chore)(\\(.+\\))?: .+"
-      severity: medium
-
-  - description: "Do not include .env files in commits"
-    event_types: ["push"]
-    condition: "files_not_match_pattern"
-    parameters:
-      pattern: "**/*.env"
-      condition_type: "files_not_match_pattern"
-      severity: high
+    actions:
+      - type: comment
+        message: "This is a title without date mentioned. PR TItle must with date."
