@@ -8,6 +8,15 @@ rules:
     parameters:
       min_approvals: 2
       message: "Pull requests require at least 2 approvals"
+
+  - id: commit-message-date
+    name: Commit message must include date
+    description: "Every commit message in a push must include a date in format YYYY-MM-DD."
+    enabled: true
+    severity: high
+    event_types: [push]
+    parameters:
+      date_regex: "\\b\\d{4}-\\d{2}-\\d{2}\\b"
       
   # PR-specific rule
   - id: pr-creation-title-rule
