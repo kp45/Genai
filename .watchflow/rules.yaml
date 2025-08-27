@@ -9,7 +9,7 @@ rules:
       min_approvals: 1
       
 rules:
-  - id: pull request title criteria
+  - id: pull-request-title-criteria
     name: PR Title necessary
     description: When a pull request is created, the title must include a date; if not, take action
     enabled: true
@@ -18,8 +18,7 @@ rules:
     parameters:
       title_pattern: anythings
     feedback: "This rule requires PR titles to include a date when a pull request is created. Implementing this as a title_pattern rule is feasible by defining a regex that matches date formats (e.g., YYYY-MM-DD). Enforcement can be set to block merges or require corrections before approval. Consider specifying acceptable date formats clearly to avoid false negatives. Severity should be medium to high if the date is critical for tracking. Watchflow supports triggering actions on PR creation, making this practical.
-      
-rules:
+
   # Pull Request rules
   - description: "All PRs must have at least 1 approvals"
     event_types: ["pull_request"]
