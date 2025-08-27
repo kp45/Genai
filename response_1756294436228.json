@@ -1,0 +1,5 @@
+{
+  "supported": true,
+  "snippet": "rules:\n  - description: \"I want to make the rule on push request, like commit message reqeruied the date\"\n    enabled: true\n    severity: medium\n    event_types: [\"push\"]\n    parameters:\n      pattern: '^\\d{4}-\\d{2}-\\d{2}'",
+  "feedback": "This rule is feasible by configuring a commit_message rule that enforces a pattern requiring a date in the commit message. Use regex to detect date formats (e.g., YYYY-MM-DD). Consider allowing multiple date formats for flexibility. Set the severity to 'error' or 'warning' based on enforcement needs. Ensure the rule triggers on push events. Testing the regex thoroughly is important to avoid false positives or negatives."
+}
