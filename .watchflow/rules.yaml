@@ -12,7 +12,7 @@ rules:
   # PR-specific rule
   - id: pr-creation-title-rule
     name: PR Title date Required
-    description: Selected PR Title must have date included in that
+    description: Selected PR Title must have today's date included in that
     enabled: true
     serverity: high
     event_types: [pull_request]
