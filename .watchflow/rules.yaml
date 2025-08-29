@@ -12,7 +12,7 @@ rules:
   # PR-specific rule
   - id: pr-creation-title-rule
     name: PR Title date Required
-    description: Selected PR Title must have today's date included in that
+    description: Selected PR Title must have three date for thrie start,end,and due date
     enabled: true
     serverity: high
     event_types: [pull_request]
@@ -20,24 +20,24 @@ rules:
       - type: comment
         message: "This is a title without date mentioned. PR TItle must with date."
   
-  # - id: commit-message-date
-  #   name: Commit message must include date
-  #   description: "Every commit message in a push must include a date in format YYYY-MM-DD."
-  #   enabled: true
-  #   severity: high
-  #   event_types: [push]
-  #   parameters:
-  #     date_regex: "\\b\\d{4}-\\d{2}-\\d{2}\\b"
+  - id: commit-message-date
+    name: Commit message must include date
+    description: "Every commit message in a push must include a date in format YYYY-MM-DD."
+    enabled: true
+    severity: high
+    event_types: [push]
+    parameters:
+      date_regex: "\\b\\d{4}-\\d{2}-\\d{2}\\b"
 
-  # - id: no-weekend-pushes
-  #   name: No Weekend Pushes
-  #   description: Prevent code pushes on weekends to avoid weekend deployments
-  #   enabled: true
-  #   severity: high
-  #   event_types: [push]
-  #   parameters:
-  #     blocked_days: [Saturday, Sunday]
-  #     message: "Pushes are not allowed on weekends"
+  - id: no-weekend-pushes
+    name: No Weekend Pushes
+    description: Prevent code pushes on weekends and Friday to avoid weekend deployments
+    enabled: true
+    severity: high
+    event_types: [push]
+    parameters:
+      blocked_days: [Saturday, Sunday]
+      message: "Pushes are not allowed on weekends"
       
   # - id: commit-message-format
   #   name: Commit Message Format
