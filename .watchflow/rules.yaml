@@ -10,15 +10,15 @@ rules:
   #     detect_non_ff: false
   #     message: "Force pushes are not allowed to protected branches"
 
-  - description: Limit number of commits per push
+  - description: "Limit number of commits per push"
     enabled: true
-    severity: medium
-    event_types: [push]
+    severity: "medium"
+    event_types: ["push"]
     parameters:
       max_commits: 1
-      message: "Too many commits in a single push
+      message: "Too many commits in a single push"
     
-  - description: Prevent force pushes to protected branches
+  - description: "Prevent force pushes to protected branches"
     enabled: true
     severity: "high"
     event_types: ["push"]
