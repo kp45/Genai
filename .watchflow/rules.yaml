@@ -1,5 +1,4 @@
 rules:
-  # Essential Open Source Rules
   - description: Prevent force pushes to protected branches
     enabled: true
     severity: "high"
