@@ -1,5 +1,15 @@
 rules:
   # Essential Open Source Rules
+  - description: Prevent force pushes to protected branches
+    enabled: true
+    severity: "high"
+    event_types: ["push"]
+    parameters:
+      allow_force_push: false
+      protected_branches: [main, development, force-demo]
+      detect_non_ff: false
+      message: "Force pushes are not allowed to protected branches"
+      
   - description: "Pull requests must have descriptive titles following conventional commit format"
     enabled: true
     severity: "medium"
