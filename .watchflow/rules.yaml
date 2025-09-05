@@ -8,3 +8,11 @@ rules:
     parameters:
       days: [Saturday, Sunday]
       message: "Deployments are not allowed on weekends"
+
+  - id: date-required-in-commit
+    name: Date Status Required
+    description: All Push commit must have date required
+    enabled: true
+    severity: high
+    event_types: [push]
+    
