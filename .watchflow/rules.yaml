@@ -9,7 +9,15 @@ rules:
   #     protected_branches: [main, development, force-demo]
   #     detect_non_ff: false
   #     message: "Force pushes are not allowed to protected branches"
-      
+
+  - description: Limit number of commits per push
+    enabled: true
+    severity: medium
+    event_types: [push]
+    parameters:
+      max_commits: 1
+      message: "Too many commits in a single push
+    
   - description: Prevent force pushes to protected branches
     enabled: true
     severity: "high"
@@ -47,9 +55,9 @@ rules:
     severity: "high"
     event_types: ["pull_request"]
 
-  - description: "No direct pushes to main branch - all changes must go through PRs"
-    enabled: true
-    severity: "critical"
-    event_types: ["push"]
-    parameters:
-      allow_force_push: false
+  # - description: "No direct pushes to main branch - all changes must go through PRs"
+  #   enabled: true
+  #   severity: "critical"
+  #   event_types: ["push"]
+  #   parameters:
+  #     allow_force_push: false
