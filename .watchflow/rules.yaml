@@ -1,60 +1,10 @@
 rules:
-  - id: pr-approval-required
-    name: PR Approval Required
-    description: All pull requests must have at least 2 approvals
+  - id: no-weekend-deployments
+    name: No Weekend Deployments
+    description: Prevent deployments on weekends to avoid maintenance issues
     enabled: true
     severity: high
-    event_types: [pull_request]
+    event_types: [deployment]
     parameters:
-      min_approvals: 2
-      message: "Pull requests require at least 2 approvals"
-      
-  # PR-specific rule
-  - id: pr-creation-title-rule
-    name: PR Title date Required
-    description: Selected PR Title must have three date for thrie start,end,and due date
-    enabled: true
-    serverity: high
-    event_types: [pull_request]
-    actions:
-      - type: comment
-        message: "This is a title without date mentioned. PR TItle must with date."
-  
-  - id: commit-message-date
-    name: Commit message must include date
-    description: "Every commit message in a push must include a date in format YYYY-MM-DD."
-    enabled: true
-    severity: high
-    event_types: [push]
-    parameters:
-      date_regex: "\\b\\d{4}-\\d{2}-\\d{2}\\b"
-
-  - id: no-weekend-pushes
-    name: No Weekend Pushes
-    description: Prevent code pushes on weekends and Friday to avoid weekend deployments
-    enabled: true
-    severity: high
-    event_types: [push]
-    parameters:
-      blocked_days: [Saturday, Sunday]
-      message: "Pushes are not allowed on weekends"
-      
-  # - id: commit-message-format
-  #   name: Commit Message Format
-  #   description: All commit messages must follow conventional commit format
-  #   enabled: true
-  #   severity: medium
-  #   event_types: [push]
-  #   parameters:
-  #     pattern: "^(feat|fix|docs|style|refactor|test|chore)(\\(.+\\))?: .+"
-  #     message: "Commit messages must follow conventional format: feat(scope): description"
-      
-  # - id: file-size-limit
-  #   name: File Size Limit
-  #   description: Prevent pushing files larger than 10MB
-  #   enabled: true
-  #   severity: medium
-  #   event_types: [push]
-  #   parameters:
-  #     max_file_size_mb: 10
-  #     message: "Files larger than 10MB are not allowed"
+      days: [Saturday, Sunday]
+      message: "Deployments are not allowed on weekends"
